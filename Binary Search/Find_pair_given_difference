@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+int binarysearch(int a[],int l,int r,int k)
+{
+    while(l<=r)
+    {
+        int m=l+(r-l)/2;
+        if(a[m]==k)
+        return m;
+        else if(a[m]>k)
+        r=m-1;
+        else
+        l=m+1;
+    }
+    return -1;
+}
+int main()
+ {
+	int t,n,k;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>k;
+        int arr[n],flag=0;
+        for(int i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        sort(arr,arr+n);
+        for(int i=0;i<n;i++)
+        {
+            int j=binarysearch(arr,0,n-1,abs(k-arr[i]));
+            if(j>=0)
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0)
+        cout<<"-1\n";
+        else
+        cout<<"1\n";
+        
+    }
+	return 0;
+}
